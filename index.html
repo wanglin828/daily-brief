@@ -3,7 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
 <title>每日简报 · 2026-11-26</title>
+<script>
+  // GitHub Pages 给 HTML 设了 10 分钟 CDN 缓存（max-age=600）。
+  // 这里在页面加载时跳到带唯一参数的地址，绕开缓存，保证每次都拿到最新内容。
+  (function () {
+    try {
+      if (location.search.indexOf("v=") === -1) {
+        location.replace(location.pathname + "?v=" + Date.now());
+      }
+    } catch (e) {}
+  })();
+</script>
 <style>
   :root { color-scheme: light dark; }
   body { margin:0; background:#f6f7f9; color:#1b1d21;
@@ -33,7 +45,7 @@
 <body>
 <main>
   <h1>每日简报 · 2026-11-26</h1>
-  <div class="sub">最后更新：2026/11/27 14:09:57</div>
+  <div class="sub">最后更新：2026/11/27 14:14:24</div>
   <pre>============================================================
   每日简报 · 2026-11-26（周四）
 ============================================================
