@@ -21,6 +21,7 @@
     color-scheme: light dark;
     --bg: #f5f6f8; --card: #ffffff; --text: #16181d; --muted: #6b7280;
     --line: #e5e7eb; --accent: #2563eb; --soft: #eef4ff;
+    --e-accent: #ea580c; --e-soft: #fff3e9;
   }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   body {
@@ -31,26 +32,40 @@
   }
   .wrap { max-width: 720px; margin: 0 auto; padding: 20px 16px 64px; }
 
-  header { padding: 4px 2px 0; }
+  header { padding: 4px 2px 12px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
   header h1 { font-size: 23px; line-height: 1.35; margin: 0 0 6px; letter-spacing: .2px; }
   header .meta { color: var(--muted); font-size: 13px; }
 
+  .block { margin-bottom: 30px; }
+  .ribbon { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; }
+  .badge {
+    font-size: 13px; font-weight: 700; color: #fff; padding: 3px 12px;
+    border-radius: 999px; letter-spacing: .5px;
+  }
+  .badge.m { background: var(--accent); }
+  .badge.e { background: var(--e-accent); }
+  .when { font-size: 13px; color: var(--muted); }
+
   .summary {
-    margin: 16px 0 4px; padding: 15px 17px;
+    margin: 0 0 14px; padding: 15px 17px;
     background: var(--soft); border-left: 4px solid var(--accent); border-radius: 10px;
     font-size: 17px; font-weight: 600; line-height: 1.75;
   }
+  .summary-e { background: var(--e-soft); border-left-color: var(--e-accent); }
 
   .card {
     background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-    padding: 18px 18px 14px; margin: 16px 0;
+    padding: 18px 18px 14px; margin: 0 0 14px;
   }
+  .block.evening .card h2 { border-left-color: var(--e-accent); }
   .card h2 {
     font-size: 18px; margin: 0 0 12px; padding-left: 10px;
     border-left: 4px solid var(--accent); line-height: 1.4;
   }
   .card .line { margin: 0 0 6px; font-size: 16px; line-height: 1.85; white-space: pre-wrap; word-break: break-word; }
   .card .line:last-child { margin-bottom: 0; }
+  .card.pending { border-style: dashed; }
+  .card.pending .line { color: var(--muted); font-size: 15px; }
 
   ol.news { list-style: none; margin: 0; padding: 0; counter-reset: n; }
   ol.news li { position: relative; padding: 0 0 16px 30px; margin: 0; }
@@ -62,16 +77,18 @@
     background: var(--soft); color: var(--accent);
     border-radius: 6px; font-size: 12px; font-weight: 700;
   }
+  .block.evening ol.news li::before { background: var(--e-soft); color: var(--e-accent); }
   .fact { margin: 0 0 6px; font-size: 16.5px; line-height: 1.75; font-weight: 500; }
   .src {
     display: inline-block; font-size: 13.5px; color: var(--accent);
     text-decoration: none; background: var(--soft);
     padding: 4px 12px; border-radius: 999px; line-height: 1.4;
   }
+  .block.evening .src { color: var(--e-accent); background: var(--e-soft); }
   .src.none { color: var(--muted); background: transparent; padding-left: 0; }
 
   .quote {
-    margin: 18px 0; padding: 16px 18px;
+    margin: 0 0 14px; padding: 16px 18px;
     background: linear-gradient(180deg, #fff9ec, #fffdf7);
     border: 1px solid #f2e2bd; border-radius: 14px;
   }
@@ -90,10 +107,15 @@
   .foot { color: #9ca3af; font-size: 12.5px; margin-top: 26px; text-align: center; line-height: 1.7; }
 
   @media (prefers-color-scheme: dark) {
-    :root { --bg:#0f1115; --card:#161a21; --text:#e8eaed; --muted:#9aa4b2; --line:#252b36; --soft:#1b2432; }
+    :root {
+      --bg:#0f1115; --card:#161a21; --text:#e8eaed; --muted:#9aa4b2; --line:#252b36;
+      --soft:#1b2432; --e-soft:#2a1c11;
+    }
     .summary { background: #17212f; }
+    .summary-e { background: #2a1c11; }
     ol.news li::before { background: #1b2432; color: #7aa7ff; }
     .src { color: #7aa7ff; background: #1b2432; }
+    .block.evening .src { color: #f0a06a; background: #2a1c11; }
     .quote { background: #1d1a12; border-color: #3b3220; }
     .quote h2 { color: #d4a72c; }
     .charts img { background: #161a21; border-color: #252b36; }
@@ -110,8 +132,10 @@
 <div class="wrap">
   <header>
     <h1>每日简报 · 2026-11-27</h1>
-    <div class="meta">最后更新：2026/11/27 14:41:13</div>
+    <div class="meta">最后更新：2026/11/27 17:47:06 · 每天 08:00 / 20:00 各更新一次</div>
   </header>
+  <div class="block">
+  <div class="ribbon"><span class="badge m">盘前</span><span class="when">08:00 更新</span></div>
   <p class="summary">政策暖风压过关税阴云，科技股反弹，但量能只有均量六成。</p>
   <section class="card"><h2>A股</h2><p class="line">昨日：上证 3476.88 +0.01%｜深成 10084.04 -0.02%｜创业板 2189.82 +0.29%</p><p class="line">成交 1.32 万亿（缩量 667 亿），超 3600 股下跌，贵金属领涨、芯片领跌</p><p class="line">外盘：道指 +0.33%｜纳指 -0.62%｜标普 -0.25%；英伟达 -4%，金龙 +1.87%</p><p class="line">11-26 美股感恩节休市，隔夜参考的其实是 11-25 收盘</p><p class="line">今日：09:30 前 10 月工业利润｜301 关税清单消化｜广州车展开幕</p><p class="line">午盘：上证 3486.76 +0.28%｜深成 10301.40 +2.16%｜创业板 2272.72 +3.79%</p></section><section class="card"><h2>K线</h2><p class="line">上证 3486.76｜MA5 3505 / MA10 3541 / MA20 3599，三线下方，空头排列</p><p class="line">45 日区间 3455–3968，仅 6% 低位；量能 0.60 倍</p><p class="line">创业板 2272.72｜站上 MA5/MA10，距 MA20 还差 4.5%；实体占 89%</p><p class="line">综合：三指数同在区间 6–9% 极低位，缩量阳线＝止跌未反转，看能否放量站 MA10</p></section><section class="card charts">
   <h2>K 线图</h2>
@@ -158,7 +182,45 @@
       <p class="fact">一人内幕交易被罚没 406 万；某 5 连板牛股收监管函</p>
       <a class="src" href="https://baijiahao.baidu.com/s?id=1882956992303062612" target="_blank" rel="noreferrer">原文 →</a>
     </li></ol></section><section class="quote"><h2>今日一句</h2><p>止跌不等于反转：缩量六成的第一次修复，要靠第二天的量来确认。</p></section><section class="card note"><h2>说明</h2><p class="line">数据：腾讯行情（前复权）、国家统计局、新华社、JETRO 等公开信息。</p><p class="line">本文件为 11-27 午盘示范版；图表由 _tools\make_kline.py 生成。</p><p class="line">不构成投资建议。</p></section>
-  <div class="foot">每日 08:00 自动更新 · 数据来源：腾讯行情、国家统计局、新华社等</div>
+</div>
+  <div class="block evening">
+  <div class="ribbon"><span class="badge e">收盘</span><span class="when">20:00 更新</span></div>
+  <p class="summary summary-e">国常会定调资本市场，午后暴力拉升，创业板 +11.61% 走出"大奇迹日"。</p>
+  <section class="card"><h2>今日A股</h2><p class="line">指数：上证 3606.49 +3.73%｜深成 10814.02 +7.24%｜创业板 2443.96 +11.61%</p><p class="line">科创50 涨超 15%、北证50 同步大涨，两创涨幅进入历史前三</p><p class="line">成交：两市 2.02 万亿，较上日放量 6824 亿（+52%），重回 2 万亿</p><p class="line">广度：超 5300 股上涨，逾 400 股涨停，涨停数创两年多新高</p><p class="line">领涨：半导体、通信设备、软件、算力——涨的全是此前跌得最深的科技成长</p></section><section class="card"><h2>K线</h2><p class="line">上证 3606.49｜MA5 3529 / MA10 3553 / MA20 3605，一举站上全部三线</p><p class="line">45 日区间 3455–3968，从 6% 位置回到 30%；量能 1.30 倍</p><p class="line">阳线实体 87%、振幅 4.12%、上影仅 3%——单边逼空，几乎无抛压</p><p class="line">创业板 2443.96｜站上 MA5/MA10/MA20，实体占 98%，接近光头光脚</p><p class="line">近 5 日 +10.48%，一根阳线吞掉过去三周跌幅</p><p class="line">综合：形态是急跌后的报复性反弹，但均线仍是 MA5&lt;MA10&lt;MA20 空头排列，</p><p class="line">趋势修复要等均线走平、回踩不破 MA5 才算确认</p></section><section class="card charts">
+  <h2>K 线图</h2>
+  <figure>
+    <a href="close/img/sh.png?d=" target="_blank" rel="noreferrer"><img src="close/img/sh.png?d=" alt="上证指数 K 线图"></a>
+    <figcaption>上证指数 · 日 K 线（点击看大图）</figcaption>
+  </figure>
+  <figure>
+    <a href="close/img/sz.png?d=" target="_blank" rel="noreferrer"><img src="close/img/sz.png?d=" alt="深证成指 K 线图" loading="lazy"></a>
+    <figcaption>深证成指</figcaption>
+  </figure>
+  <figure>
+    <a href="close/img/cyb.png?d=" target="_blank" rel="noreferrer"><img src="close/img/cyb.png?d=" alt="创业板指 K 线图" loading="lazy"></a>
+    <figcaption>创业板指</figcaption>
+  </figure>
+</section><section class="card"><h2>今日要闻</h2><p class="line">1. 国务院常务会议：资本市场事关经济发展大局，推动上市公司加大分红回购、</p><p class="line">加力发挥"国家队"稳市作用、优化中央汇金类"平准基金"功能</p><p class="line">https://news.qq.com/rain/a/20261127A0ATMQ00</p><p class="line">2. 前 10 月规上工业企业利润 6.74 万亿，同比 +16.0%，10 月单月 +20.1%</p><p class="line">http://www.news.cn/20261127/6e541c1aa59b467c8f2987e5d38aea67/c.html</p><p class="line">3. 八部门印发《服务贸易发展"十五五"规划》，推动云计算、大模型等 AI 服务出海</p><p class="line">https://www.cnstock.com/commonDetail/834471</p></section><section class="card"><h2>国内</h2><ol class="news"><li>
+      <p class="fact">李强会见亚洲开发银行行长</p>
+      <a class="src" href="https://tv.cctv.cn/2026/11/27/VIDE4dr91xKIy7Aykl9dv2aC261127.shtml" target="_blank" rel="noreferrer">原文 →</a>
+    </li><li>
+      <p class="fact">长征二号丁成功发射遥感四十九号 01 组卫星（11-26 17:38，西昌）</p>
+      <a class="src" href="https://www.toutiao.com/article/7712642720334709263/" target="_blank" rel="noreferrer">原文 →</a>
+    </li></ol></section><section class="card"><h2>国际</h2><ol class="news"><li>
+      <p class="fact">美国 301"产能过剩"调查拟对 14 个经济体加征 15%~35% 关税，中国约 20%</p>
+      <a class="src" href="https://www.jetro.go.jp/biznews/2026/11/92ab88cfaf28acbd.html" target="_blank" rel="noreferrer">原文 →</a>
+    </li><li>
+      <p class="fact">美股今日感恩节次日仅半日交易，周五收盘为下周开盘的重要参考</p>
+      <a class="src" href="https://finance.sina.com.cn/wm/2026-11-26/doc-inizzftq8234743.shtml" target="_blank" rel="noreferrer">原文 →</a>
+    </li></ol></section><section class="card"><h2>科技与社会</h2><ol class="news"><li>
+      <p class="fact">据报英伟达暂停向东南亚四国发运搭载其芯片的服务器</p>
+      <a class="src" href="https://www.sohu.com/a/1106856592_115362" target="_blank" rel="noreferrer">原文 →</a>
+    </li><li>
+      <p class="fact">一人内幕交易被罚没 406 万；某 5 连板牛股收监管函</p>
+      <a class="src" href="https://baijiahao.baidu.com/s?id=1882956992303062612" target="_blank" rel="noreferrer">原文 →</a>
+    </li></ol></section><section class="card"><h2>下周看点</h2><p class="line">· 周一能否高开不破位、成交能否守住 2 万亿——放量长阳后的第一次检验</p><p class="line">· 国常会"增量政策"的具体落地文件，是否涉及 IPO 节奏与回购新规</p><p class="line">· 美国 301 关税清单的最终税率与生效时间</p></section><section class="quote"><h2>今日一句</h2><p>涨的不是全面牛市，是跌得最深的科技成长在政策催化下集中回补；放量骗不了人，但一天的暴力反弹，通常换不来一轮趋势——先看能不能站稳。</p></section><section class="card note"><h2>说明</h2><p class="line">数据：腾讯行情（前复权，截至 2026-11-27 收盘）、新闻联播、国家统计局、财联社等公开信息。</p><p class="line">图表由 _tools\make_kline.py 生成。</p><p class="line">本文件为 11-27 收盘版，不构成投资建议。</p></section>
+</div>
+  <div class="foot">数据来源：腾讯行情、国家统计局、新华社等 · 仅供参考，不构成投资建议</div>
 </div>
 </body>
 </html>
